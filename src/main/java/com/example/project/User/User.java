@@ -22,8 +22,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 
-
-
 @Data
 @Builder
 @NoArgsConstructor 
@@ -35,9 +33,6 @@ public class User implements UserDetails{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	
-	@Column(nullable = false, unique = true)
-	private String Username;
 	
 	@Column(nullable = false)
 	private String first_name;
@@ -71,7 +66,7 @@ public class User implements UserDetails{
 	
 	@Override
 	public String getUsername() {
-		return Username;
+		return email;
 	}
 	@Override
 	public boolean isAccountNonExpired() {
@@ -133,10 +128,6 @@ public class User implements UserDetails{
 
 	public void setRole(Role role) {
 		this.role = role;
-	}
-
-	public void setUsername(String username) {
-		Username = username;
 	}
 
 	public void setPassword(String password) {

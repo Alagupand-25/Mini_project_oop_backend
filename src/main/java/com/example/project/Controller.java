@@ -1,6 +1,8 @@
 package com.example.project;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -15,10 +17,12 @@ public class Controller {
 	JwtService jwtservice;
 	@Autowired
 	UserRepository userepo;
+	@Autowired
+	UserDetailsService userdetails;
 	
 	@GetMapping
-	public String getdata() {
-		return "hi";
+	public UserDetails getdata() {
+		return userdetails.loadUserByUsername("Alagupandi");
 	}
 	
 	@GetMapping("/token")

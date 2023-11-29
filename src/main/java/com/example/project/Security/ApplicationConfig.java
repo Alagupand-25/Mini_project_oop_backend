@@ -14,7 +14,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.example.project.User.UserRepository;
 
+import lombok.RequiredArgsConstructor;
 
+@RequiredArgsConstructor
 @Configuration
 public class ApplicationConfig {
 	

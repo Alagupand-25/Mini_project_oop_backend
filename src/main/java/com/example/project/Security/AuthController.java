@@ -1,33 +1,35 @@
-package com.example.project;
+package com.example.project.Security;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.project.Security.JwtService;
 import com.example.project.User.UserRepository;
 
+import lombok.RequiredArgsConstructor;
 
-@RestController
-public class Controller {
+
+@RestController 
+@RequestMapping("/api/auth/")
+@RequiredArgsConstructor
+public class AuthController {
 	
 	@Autowired
 	JwtService jwtservice;
-	@Autowired
 	UserRepository userepo;
-	@Autowired
 	UserDetailsService userdetails;
 	
 	@GetMapping
-	public UserDetails getdata() {
-		return userdetails.loadUserByUsername("Alagupandi");
+	public String getdata() {
+		return "hi";
 	}
 	
-	@GetMapping("/token")
+	@GetMapping("check_generateToken")
 	public String gettoken() {
-		return jwtservice.generateToken("Alagupandi");
+		return jwtservice.generateToken("admin@gmail.com");
 	}
 	
 	@GetMapping("/token_check")
@@ -35,7 +37,7 @@ public class Controller {
 		return jwtservice.extractUsername(gettoken());
 	}
 	
-	@GetMapping("/token_expire")
+	@GetMapping("/register")
 	public Boolean gettokenexpire() {
 		return jwtservice.isTokenExpired(gettoken());
 	}

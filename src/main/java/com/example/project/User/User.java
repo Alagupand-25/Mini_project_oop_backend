@@ -17,6 +17,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -25,7 +26,7 @@ import lombok.RequiredArgsConstructor;
 @Data
 @Builder
 @NoArgsConstructor 
-@RequiredArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "User_table")
 public class User implements UserDetails{
@@ -34,6 +35,62 @@ public class User implements UserDetails{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getFirst_name() {
+		return first_name;
+	}
+
+	public void setFirst_name(String first_name) {
+		this.first_name = first_name;
+	}
+
+	public String getLast_name() {
+		return last_name;
+	}
+
+	public void setLast_name(String last_name) {
+		this.last_name = last_name;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public Role getRole() {
+		return role;
+	}
+
+	public void setRole(Role role) {
+		this.role = role;
+	}
+
+	public void setPassword(String password) {
+		Password = password;
+	}
+
+	public void setAccountNonExpired(boolean accountNonExpired) {
+		AccountNonExpired = accountNonExpired;
+	}
+
+	public void setAccountNonLocked(boolean accountNonLocked) {
+		AccountNonLocked = accountNonLocked;
+	}
+
+	public void setEnabled(boolean enabled) {
+		Enabled = enabled;
+	}
+
 	@Column(nullable = false)
 	private String first_name;
 	
@@ -90,60 +147,5 @@ public class User implements UserDetails{
 		return Password;
 	}
 	
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	public String getFirst_name() {
-		return first_name;
-	}
-
-	public void setFirst_name(String first_name) {
-		this.first_name = first_name;
-	}
-
-	public String getLast_name() {
-		return last_name;
-	}
-
-	public void setLast_name(String last_name) {
-		this.last_name = last_name;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public Role getRole() {
-		return role;
-	}
-
-	public void setRole(Role role) {
-		this.role = role;
-	}
-
-	public void setPassword(String password) {
-		Password = password;
-	}
-
-	public void setAccountNonExpired(boolean accountNonExpired) {
-		AccountNonExpired = accountNonExpired;
-	}
-
-	public void setAccountNonLocked(boolean AccountNonLocked) {
-		this.AccountNonLocked = AccountNonLocked;
-	}
-
-	public void setEnabled(boolean enabled) {
-		Enabled = enabled;
-	}
-
+	
 }

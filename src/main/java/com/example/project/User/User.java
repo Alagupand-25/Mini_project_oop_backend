@@ -17,22 +17,23 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
-import lombok.Setter;
-
 
 @Data
 @Builder
 @NoArgsConstructor 
-@RequiredArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "User_table")
 public class User implements UserDetails{
-	
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id;
 	
 	public int getId() {
 		return id;
@@ -74,10 +75,6 @@ public class User implements UserDetails{
 		this.role = role;
 	}
 
-	public void setUsername(String username) {
-		Username = username;
-	}
-
 	public void setPassword(String password) {
 		Password = password;
 	}
@@ -86,21 +83,14 @@ public class User implements UserDetails{
 		AccountNonExpired = accountNonExpired;
 	}
 
-	public void setAccountNonLocked(boolean AccountNonLocked) {
-		this.AccountNonLocked = AccountNonLocked;
+	public void setAccountNonLocked(boolean accountNonLocked) {
+		AccountNonLocked = accountNonLocked;
 	}
 
 	public void setEnabled(boolean enabled) {
 		Enabled = enabled;
 	}
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
-	
-	@Column(nullable = false, unique = true)
-	private String Username;
-	
 	@Column(nullable = false)
 	private String first_name;
 	
@@ -109,6 +99,7 @@ public class User implements UserDetails{
 	
 	@Column(nullable = false, unique = true)
 	private String email;
+	
 	@JsonIgnore
 	@Column(nullable = false)
 	private String Password;
@@ -132,7 +123,7 @@ public class User implements UserDetails{
 	
 	@Override
 	public String getUsername() {
-		return Username;
+		return email;
 	}
 	@Override
 	public boolean isAccountNonExpired() {
@@ -155,5 +146,6 @@ public class User implements UserDetails{
 	public String getPassword() {
 		return Password;
 	}
-
+	
+	
 }

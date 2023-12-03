@@ -1,0 +1,9 @@
+package com.example.project.Student;
+
+import java.util.List;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface StudentRepo extends JpaRepository<Students,Integer>{
+	List<Students> findAll();
+}

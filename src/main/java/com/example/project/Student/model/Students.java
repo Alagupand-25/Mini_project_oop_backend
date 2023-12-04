@@ -1,4 +1,4 @@
-package com.example.project.Student;
+package com.example.project.Student.model;
 
 import com.example.project.User.User;
 
@@ -31,7 +31,7 @@ public class Students {
 	private int id;
 	
 	@Column(nullable = false, unique = true)
-	private long Roll_no;
+	private long rollno;
 	
 	@Enumerated(EnumType.STRING)
 	private Branch branch;
@@ -53,24 +53,21 @@ public class Students {
 		return id;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public long getRollno() {
+		return rollno;
 	}
 
-	public long getRoll_no() {
-		return Roll_no;
+	public void setRollno(long rollno) {
+		this.rollno = rollno;
 	}
 
-	public void setRoll_no(long roll_no) {
-		Roll_no = roll_no;
-	}
 
 	public Branch getBranch() {
 		return branch;
 	}
 
-	public void setBranch(Branch branch) {
-		this.branch = branch;
+	public void setBranch(String string) {
+		this.branch = Branch.valueOf(string);
 	}
 
 	public String getDept() {

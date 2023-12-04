@@ -1,4 +1,4 @@
-package com.example.project.Student;
+package com.example.project.Student.model;
 
 public enum Branch {
 	CSE,

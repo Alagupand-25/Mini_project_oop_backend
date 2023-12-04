@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.project.Security.Config.JwtService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -24,21 +25,6 @@ public class AuthController{
 	@Autowired
 	AuthService authservice;
 	
-	@GetMapping
-	public String getdata() {
-		return "hi";
-	}
-	
-	@GetMapping("check_generateToken")
-	public String gettoken() {
-		return jwtservice.generateToken("admin@gmail.com");
-	}
-	
-	@GetMapping("/token_check")
-	private Object calmier() {
-		return jwtservice.extractUsername(gettoken());
-	}
-	
 	@PostMapping("/register")
     public ResponseEntity<String> register(@RequestBody Registerbody registerbody){
 		
@@ -52,9 +38,13 @@ public class AuthController{
     }
 	
 	@PostMapping("/authenticate")
-	public ResponseEntity<AuthReponsebody> register(@RequestBody AuthRequestbody request
-	    ){
-	        return ResponseEntity.status(HttpStatus.OK).body(authservice.authenticate(request));
+	public ResponseEntity<?> register(@RequestBody AuthRequestbody request){
+		try {
+			 return ResponseEntity.status(HttpStatus.OK).body(authservice.authenticate(request));
+		}
+		catch(Exception e){
+			return ResponseEntity.badRequest().body(e.getMessage());
+		}  
 
 	 }
 }

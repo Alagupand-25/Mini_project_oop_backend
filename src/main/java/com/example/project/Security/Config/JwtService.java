@@ -1,4 +1,4 @@
-package com.example.project.Security;
+package com.example.project.Security.Config;
 
 
 import io.jsonwebtoken.Claims; 
@@ -30,7 +30,7 @@ public class JwtService {
                 .setClaims(claims) 
                 .setSubject(userName) 
                 .setIssuedAt(new Date(System.currentTimeMillis())) 
-                .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 30)) 
+                .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 30 * 48)) 
                 .signWith(getSignKey(), SignatureAlgorithm.HS256).compact(); 
     } 
   

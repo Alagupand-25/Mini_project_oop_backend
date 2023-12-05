@@ -35,6 +35,31 @@ public class User implements UserDetails{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
+	@Column(nullable = false)
+	private String first_name;
+	
+	@Column(nullable = false)
+	private String last_name;
+	
+	@Column(nullable = false, unique = true)
+	private String email;
+	
+	@JsonIgnore
+	@Column(nullable = false)
+	private String Password;
+	
+	@Enumerated(EnumType.STRING)
+	private Role role;
+	
+	@Column(columnDefinition = "boolean default true")
+	private boolean AccountNonExpired;
+	
+	@Column(columnDefinition = "boolean default true")
+	private boolean AccountNonLocked;
+	
+	@Column(columnDefinition = "boolean default true")
+	private boolean Enabled;
+	
 	public int getId() {
 		return id;
 	}
@@ -91,31 +116,6 @@ public class User implements UserDetails{
 		Enabled = enabled;
 	}
 
-	@Column(nullable = false)
-	private String first_name;
-	
-	@Column(nullable = false)
-	private String last_name;
-	
-	@Column(nullable = false, unique = true)
-	private String email;
-	
-	@JsonIgnore
-	@Column(nullable = false)
-	private String Password;
-	
-	@Enumerated(EnumType.STRING)
-	private Role role;
-	
-	@Column(columnDefinition = "boolean default true")
-	private boolean AccountNonExpired;
-	
-	@Column(columnDefinition = "boolean default true")
-	private boolean AccountNonLocked;
-	
-	@Column(columnDefinition = "boolean default true")
-	private boolean Enabled;
-	
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		return List.of(new SimpleGrantedAuthority(role.name()));
@@ -125,14 +125,17 @@ public class User implements UserDetails{
 	public String getUsername() {
 		return email;
 	}
+	
 	@Override
 	public boolean isAccountNonExpired() {
 		return AccountNonExpired;
 	}
+	
 	@Override
 	public boolean isAccountNonLocked() {
 		return AccountNonLocked;
 	}
+	
 	@Override
 	public boolean isCredentialsNonExpired() {
 		return true;

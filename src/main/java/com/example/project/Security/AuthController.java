@@ -4,6 +4,7 @@ package com.example.project.Security;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -37,10 +38,21 @@ public class AuthController{
 		
     }
 	
-	@PostMapping("/authenticate")
-	public ResponseEntity<?> register(@RequestBody AuthRequestbody request){
+	@PostMapping("/facility")
+	public ResponseEntity<?> auth_facility(@RequestBody AuthRequestbody request){
 		try {
-			 return ResponseEntity.status(HttpStatus.OK).body(authservice.authenticate(request));
+			 return authservice.authenticate_facility(request);
+		}
+		catch(Exception e){
+			return ResponseEntity.badRequest().body(e.getMessage());
+		}  
+
+	 }
+	
+	@PostMapping("/student")
+	public ResponseEntity<?> auth_students(@RequestBody AuthRequestbody request){
+		try {
+			 return authservice.authenticate_students(request);
 		}
 		catch(Exception e){
 			return ResponseEntity.badRequest().body(e.getMessage());

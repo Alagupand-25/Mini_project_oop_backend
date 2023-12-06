@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.example.project.Student.model.Branch;
 import com.example.project.Student.model.StudentRepo;
 import com.example.project.Student.model.Students;
+import com.example.project.User.Role;
 import com.example.project.User.User;
 import com.example.project.User.UserRepository;
 
@@ -38,7 +39,7 @@ public class StudentService {
 	public ResponseEntity<?> addStudents(StudentsRequest request) throws Exception{
 		if(userRepo.existsByEmail(request.getEmail())) {
 			User user = userRepo.getByEmail(request.getEmail());
-			if(!studentsrepo.existsByRollno(request.getrollno())){
+			if(!studentsrepo.existsByRollno(request.getrollno()) && user.getRole() == Role.Students ){
 				Students student = new Students();
 				student.setRollno(request.getrollno());
 				student.setBranch(request.getBranch());
@@ -46,11 +47,10 @@ public class StudentService {
 				student.setYear(request.getYear());
 				student.setSemester(request.getSemester());
 				student.setUser(user);
-				System.out.println(student.getBranch() instanceof Branch);
 				studentsrepo.save(student);
 				return ResponseEntity.status(HttpStatus.CREATED).body("Students registered successfully");
 			}
-			 return ResponseEntity.status(HttpStatus.CONFLICT).body("Students already exits");
+			 return ResponseEntity.status(HttpStatus.CONFLICT).body("Students already exits or not a students");
 		}
 		return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User does not already exits");
 	}

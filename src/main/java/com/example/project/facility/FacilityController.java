@@ -1,8 +1,9 @@
-package com.example.project.Student;
+package com.example.project.facility;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -10,18 +11,17 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-
 @RestController
-@RequestMapping("/api/student/")
-public class StudentController {
+@RequestMapping("/api/facility/")
+public class FacilityController {
 	
 	@Autowired
-	StudentService studentsservice;
+	FacilityService facilityService;
 	
 	@GetMapping
 	public ResponseEntity<?> getallstudents(){
 		try {
-			return ResponseEntity.status(HttpStatus.OK).body(studentsservice.getallStudents());
+			return ResponseEntity.status(HttpStatus.OK).body(facilityService.getallFacility());
 		}
 		catch(Exception e){
 			return ResponseEntity.badRequest().body(e.getMessage());
@@ -29,20 +29,31 @@ public class StudentController {
 	}
 	
 	@PostMapping
-	public ResponseEntity<?> addStudents(@RequestBody StudentsRequest request)
+	public ResponseEntity<?> addStudents(@RequestBody FacilityRequest request)
 	{
 		try {
-			return studentsservice.addStudents(request);
+			return facilityService.addFacility(request);
 		}
 		catch (Exception e) {
 			return ResponseEntity.badRequest().body(e.getMessage());
 		}
 		
 	}
-	@GetMapping("{rollno}")
-	public ResponseEntity<?> getStudent(@PathVariable long rollno){
+	
+	@GetMapping("{facilityid}")
+	public ResponseEntity<?> getStudent(@PathVariable long facilityid){
 		try {
-			return studentsservice.getstudent(rollno);
+			return facilityService.getFacility(facilityid);
+		}
+		catch (Exception e) {
+			return ResponseEntity.badRequest().body(e.getMessage());
+		}
+	}
+	
+	@DeleteMapping("{facilityid}")
+	public ResponseEntity<?> deleteFacility(@PathVariable long facilityid){
+		try {
+			return facilityService.deleteFacility(facilityid);
 		}
 		catch (Exception e) {
 			return ResponseEntity.badRequest().body(e.getMessage());

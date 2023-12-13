@@ -15,7 +15,7 @@ public class Check_Controller {
 	@PreAuthorize("hasAuthority('Admin')")
 	@GetMapping
 	public String getmethod(HttpServletRequest request) {
-		return "hi fuck you "+request.getUserPrincipal();	
+		return "hi you "+request.getUserPrincipal();	
 	}
 	
 }

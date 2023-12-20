@@ -39,47 +39,28 @@ public class AuthService {
 			repository.save(user);
 			return ResponseEntity.status(HttpStatus.CREATED).body("User registered successfully");
 		}
-		 return ResponseEntity.status(HttpStatus.CONFLICT).body("User already exits");
+		 return ResponseEntity.status(HttpStatus.CONFLICT).body("There is no such user");
 		
 	}
 
-	public ResponseEntity<?> authenticate_students(AuthRequestbody request) throws Exception {
-			var user = repository.findByEmail(request.getEmail())
-	                .orElseThrow();
-			if(user.getRole() == Role.Students) {
-				authmanager.authenticate(
-	                	new UsernamePasswordAuthenticationToken(request.getEmail(),request.getPassword()
-	                	)
-					);
-				var jwtToken = jwtservice.generateToken(user.getUsername());
-				AuthReponsebody reponsebody = new AuthReponsebody();
-				reponsebody.setEmail(user.getEmail());
-				reponsebody.setToken(jwtToken);
-				reponsebody.setExpiredata(jwtservice.extractExpiration(jwtToken));
-				return ResponseEntity.status(HttpStatus.OK).body(reponsebody);
-			}
-			else {
-				return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("User is not a student");
-			}
-		}
-
-	public ResponseEntity<?> authenticate_facility(AuthRequestbody request) {
-		var user = repository.findByEmail(request.getEmail())
-                .orElseThrow();
-		if(user.getRole() == Role.Admin || user.getRole() == Role.Teacher) {
+	public ResponseEntity<?> authenticate_user(AuthRequestbody request) {
+		if(repository.existsByEmail(request.getEmail())) {
+			var user = repository.findByEmail(request.getEmail()).orElseThrow();
 			authmanager.authenticate(
-                	new UsernamePasswordAuthenticationToken(request.getEmail(),request.getPassword()
-                	)
-				);
+                	new UsernamePasswordAuthenticationToken(
+                		request.getEmail(),request.getPassword()
+                )
+			);
 			var jwtToken = jwtservice.generateToken(user.getUsername());
 			AuthReponsebody reponsebody = new AuthReponsebody();
 			reponsebody.setEmail(user.getEmail());
 			reponsebody.setToken(jwtToken);
 			reponsebody.setExpiredata(jwtservice.extractExpiration(jwtToken));
+			reponsebody.setRole(user.getRole());
 			return ResponseEntity.status(HttpStatus.OK).body(reponsebody);
 		}
 		else {
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("User is not a facility");
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("There is no such user");
 		}
 	}
 	

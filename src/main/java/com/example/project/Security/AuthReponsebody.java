@@ -2,6 +2,8 @@ package com.example.project.Security;
 
 import java.util.Date;
 
+import com.example.project.User.Role;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -12,9 +14,12 @@ import lombok.RequiredArgsConstructor;
 @AllArgsConstructor
 @RequiredArgsConstructor
 public class AuthReponsebody {
+	
 	String email;
     String token;
     Date expiredata;
+    Role role;
+    
 	public String getEmail() {
 		return email;
 	}
@@ -33,4 +38,11 @@ public class AuthReponsebody {
 	public void setExpiredata(Date expiredata) {
 		this.expiredata = expiredata;
 	}
+	public Role getRole() {
+		return role;
+	}
+	public void setRole(Role role) {
+		this.role = role;
+	}
+	
 }

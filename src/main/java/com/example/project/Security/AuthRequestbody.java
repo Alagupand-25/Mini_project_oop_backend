@@ -1,5 +1,7 @@
 package com.example.project.Security;
 
+import com.example.project.User.Role;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.RequiredArgsConstructor;

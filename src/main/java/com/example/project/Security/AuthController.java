@@ -38,25 +38,14 @@ public class AuthController{
 		
     }
 	
-	@PostMapping("/facility")
-	public ResponseEntity<?> auth_facility(@RequestBody AuthRequestbody request){
+	@PostMapping
+	public ResponseEntity<?> auth_user(@RequestBody AuthRequestbody request){
 		try {
-			 return authservice.authenticate_facility(request);
+			 return authservice.authenticate_user(request);
 		}
 		catch(Exception e){
 			return ResponseEntity.badRequest().body(e.getMessage());
 		}  
+	}
 
-	 }
-	
-	@PostMapping("/student")
-	public ResponseEntity<?> auth_students(@RequestBody AuthRequestbody request){
-		try {
-			 return authservice.authenticate_students(request);
-		}
-		catch(Exception e){
-			return ResponseEntity.badRequest().body(e.getMessage());
-		}  
-
-	 }
 }

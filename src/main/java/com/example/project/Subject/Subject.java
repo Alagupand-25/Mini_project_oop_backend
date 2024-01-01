@@ -1,6 +1,6 @@
 package com.example.project.Subject;
 
-import com.example.project.facility.model.Facility;
+import com.example.project.facility.model.Faculty;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -32,7 +32,7 @@ public class Subject {
 	@Column(nullable = false)
 	private String Title;
 	
-	@Column(nullable = false)
+	@Column(nullable = false,unique = true)
 	private String CourseCode;
 	
 	@Column(nullable = false)
@@ -41,9 +41,9 @@ public class Subject {
 	@Column(nullable = false)
 	private int Year;
 	
-	@OneToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "facility_id",referencedColumnName = "facilityid")
-	private Facility facility ;
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "facultyid",referencedColumnName = "facultyid")
+	private Faculty faculty ;
 
 	public int getId() {
 		return id;
@@ -81,12 +81,12 @@ public class Subject {
 		CourseCode = courseCode;
 	}
 
-	public Facility getFacility() {
-		return facility;
+	public Faculty getFacility() {
+		return faculty;
 	}
 
-	public void setFacility(Facility facility) {
-		this.facility = facility;
+	public void setFacility(Faculty faculty) {
+		this.faculty = faculty;
 	}
 	
 }

@@ -12,16 +12,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/facility/")
-public class FacilityController {
+@RequestMapping("/api/faculty/")
+public class FacultyController {
 	
 	@Autowired
-	FacilityService facilityService;
+	FacultyService facultyService;
 	
 	@GetMapping
 	public ResponseEntity<?> getallstudents(){
 		try {
-			return ResponseEntity.status(HttpStatus.OK).body(facilityService.getallFacility());
+			return ResponseEntity.status(HttpStatus.OK).body(facultyService.getallFacility());
 		}
 		catch(Exception e){
 			return ResponseEntity.badRequest().body(e.getMessage());
@@ -29,10 +29,10 @@ public class FacilityController {
 	}
 	
 	@PostMapping
-	public ResponseEntity<?> addStudents(@RequestBody FacilityRequest request)
+	public ResponseEntity<?> addStudents(@RequestBody FacultyRequest request)
 	{
 		try {
-			return facilityService.addFacility(request);
+			return facultyService.addFacility(request);
 		}
 		catch (Exception e) {
 			return ResponseEntity.badRequest().body(e.getMessage());
@@ -43,19 +43,19 @@ public class FacilityController {
 	@GetMapping("{facilityid}")
 	public ResponseEntity<?> getStudent(@PathVariable long facilityid){
 		try {
-			return facilityService.getFacility(facilityid);
+			return facultyService.getFacility(facilityid);
 		}
 		catch (Exception e) {
 			return ResponseEntity.badRequest().body(e.getMessage());
 		}
 	}
 	
-	@DeleteMapping("{facilityid}")
-	public ResponseEntity<?> deleteFacility(@PathVariable long facilityid){
+	@DeleteMapping("{facultyid}")
+	public ResponseEntity<?> deleteFacility(@PathVariable long facultyid){
 		try {
-			return facilityService.deleteFacility(facilityid);
+			return facultyService.deleteFacility(facultyid);
 		}
-		catch (Exception e) {
+		catch (Exception e){
 			return ResponseEntity.badRequest().body(e.getMessage());
 		}
 	}

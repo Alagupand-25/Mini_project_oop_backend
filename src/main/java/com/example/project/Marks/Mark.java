@@ -1,7 +1,6 @@
 package com.example.project.Marks;
 
 import java.util.Date;
-import java.util.List;
 
 import com.example.project.Student.model.Students;
 import com.example.project.Subject.Subject;
@@ -14,7 +13,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -34,13 +33,13 @@ public class Mark {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	
-	@ManyToMany(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "CourseCode", referencedColumnName = "CourseCode")
-	private List<Subject> subjects;
+	private Subject subjects;
 	
-	@ManyToMany(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "rollno",referencedColumnName = "rollno")
-	private List<Students> students;
+	private Students students;
 	
 	@Column(nullable = false,columnDefinition = "boolean default true")
 	private boolean attended;
@@ -48,9 +47,9 @@ public class Mark {
 	@Column(nullable = false,columnDefinition = "int default 0")
 	private int marks_obtained;
 	
-	@ManyToMany(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "Faculty",referencedColumnName = "facultyid")
-	private List<Faculty> faculty; 
+	private Faculty faculty; 
 	
 	@Column(nullable = false)
 	private Test test;
@@ -63,20 +62,23 @@ public class Mark {
 	
 	@Column(nullable = false)
 	private Semester semester;
+	
+	@Column(nullable =  false)
+	private Result result;
 
-	public List<Subject> getSubjects() {
+	public Subject getSubjects() {
 		return subjects;
 	}
 
-	public void setSubjects(List<Subject> subjects) {
+	public void setSubjects(Subject subjects) {
 		this.subjects = subjects;
 	}
 
-	public List<Students> getStudents() {
+	public Students getStudents() {
 		return students;
 	}
 
-	public void setStudents(List<Students> students) {
+	public void setStudents(Students students) {
 		this.students = students;
 	}
 
@@ -96,11 +98,11 @@ public class Mark {
 		this.marks_obtained = marks_obtained;
 	}
 
-	public List<Faculty> getFaculty() {
+	public Faculty getFaculty() {
 		return faculty;
 	}
 
-	public void setFaculty(List<Faculty> faculty) {
+	public void setFaculty(Faculty faculty) {
 		this.faculty = faculty;
 	}
 
@@ -136,8 +138,16 @@ public class Mark {
 		this.semester = semester;
 	}
 
-	public long getId() {
-		return id;
+	public Result getResult() {
+		return result;
 	}
-	
+
+	public void setResult(Result result) {
+		this.result = result;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
 }

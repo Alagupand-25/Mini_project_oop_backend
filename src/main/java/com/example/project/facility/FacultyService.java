@@ -38,7 +38,7 @@ public class FacultyService {
 	public ResponseEntity<?> addFacility(FacultyRequest request) throws Exception{
 		if(userRepo.existsByEmail(request.getEmail())) {
 			User user = userRepo.getByEmail(request.getEmail());
-			if((facultyRepo.existsByFacultyid(request.getFacultyid())) && ((user.getRole() == Role.Admin) || (user.getRole() == Role.Teacher ))) {
+			if((!facultyRepo.existsByFacultyid(request.getFacultyid())) && ((user.getRole() == Role.Admin) || (user.getRole() == Role.Teacher ))) {
 				Faculty faculty = new Faculty();
 				faculty.setFacultyid(request.getFacultyid());
 				faculty.setDesignation(request.getDesignation());

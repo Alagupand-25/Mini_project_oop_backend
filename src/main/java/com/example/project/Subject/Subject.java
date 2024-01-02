@@ -30,10 +30,10 @@ public class Subject {
 	private int id;
 	
 	@Column(nullable = false)
-	private String Title;
+	private String name;
 	
 	@Column(nullable = false,unique = true)
-	private String CourseCode;
+	private String coursecode;
 	
 	@Column(nullable = false)
 	private String department;
@@ -49,12 +49,12 @@ public class Subject {
 		return id;
 	}
 
-	public String getTitle() {
-		return Title;
+	public String getName() {
+		return name;
 	}
 
-	public void setTitle(String title) {
-		Title = title;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public String getDepartment() {
@@ -73,19 +73,20 @@ public class Subject {
 		Year = year;
 	}
 
-	public String getCourseCode() {
-		return CourseCode;
+	
+	public String getCoursecode() {
+		return coursecode;
 	}
 
-	public void setCourseCode(String courseCode) {
-		CourseCode = courseCode;
+	public void setCoursecode(String coursecode) {
+		this.coursecode = coursecode;
 	}
 
-	public Faculty getFacility() {
+	public Faculty getFaculty() {
 		return faculty;
 	}
 
-	public void setFacility(Faculty faculty) {
+	public void setFaculty(Faculty faculty) {
 		this.faculty = faculty;
 	}
 	

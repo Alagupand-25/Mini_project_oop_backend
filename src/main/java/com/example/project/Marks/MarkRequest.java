@@ -2,6 +2,8 @@ package com.example.project.Marks;
 
 import java.util.Date;
 
+import com.example.project.Marks.Model.Result;
+
 
 public class MarkRequest {
 

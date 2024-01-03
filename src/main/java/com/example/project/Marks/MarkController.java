@@ -24,4 +24,14 @@ public class MarkController {
 			return ResponseEntity.badRequest().body(e.getMessage());
 		}
 	}
+	
+	@PostMapping("student")
+	public ResponseEntity<?> getByStudent(@RequestBody StudentMarkRequest request){
+		try {
+			return markservice.getByStudent(request);
+		}
+		catch(Exception e) {
+			return ResponseEntity.badRequest().body(e.getMessage());
+		}
+	}
 }

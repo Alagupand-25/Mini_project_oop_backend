@@ -1,10 +1,16 @@
 package com.example.project.Marks;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import com.example.project.Marks.Model.Mark;
+import com.example.project.Marks.Model.MarkRepository;
+import com.example.project.Marks.Model.Semester;
+import com.example.project.Marks.Model.Test;
 import com.example.project.Student.model.StudentRepo;
 import com.example.project.Student.model.Students;
 import com.example.project.Subject.Subject;
@@ -57,10 +63,19 @@ public class MarkService {
         }
     }
     
-    public ResponseEntity<?> getByStudent(long rollno){
-    	if(studentRepo.existsByRollno(rollno)) {
-    		
-    	}
-    	return null;
+    public ResponseEntity<?> getByStudent(StudentMarkRequest request) throws Exception{
+        if (studentRepo.existsByRollno(request.getRollno())) {
+            Students students = studentRepo.getByRollno(request.getRollno());
+            Semester semester = request.getSemester();
+            int year = request.getYear();
+            
+            List<Mark> marks = markRepository.findByStudentsAndSemesterAndYear(students, semester, year);
+
+            
+                return ResponseEntity.ok(marks);
+           
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Student with the provided roll number not found");
+        }
     }
 }

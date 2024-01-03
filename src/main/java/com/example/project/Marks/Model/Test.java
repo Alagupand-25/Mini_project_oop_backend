@@ -1,4 +1,4 @@
-package com.example.project.Marks;
+package com.example.project.Marks.Model;
 
 public enum Test {
 	Semester,

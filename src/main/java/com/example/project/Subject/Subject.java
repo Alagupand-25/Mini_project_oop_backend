@@ -1,5 +1,6 @@
 package com.example.project.Subject;
 
+import com.example.project.Marks.Semester;
 import com.example.project.facility.model.Faculty;
 
 import jakarta.persistence.Column;
@@ -39,6 +40,9 @@ public class Subject {
 	private String department;
 	
 	@Column(nullable = false)
+	private Semester semester;
+	
+	@Column(nullable = false)
 	private int Year;
 	
 	@OneToOne(fetch = FetchType.LAZY)
@@ -72,8 +76,15 @@ public class Subject {
 	public void setYear(int year) {
 		Year = year;
 	}
-
 	
+	public Semester getSemester() {
+		return semester;
+	}
+
+	public void setSemester(Semester semester) {
+		this.semester = semester;
+	}
+
 	public String getCoursecode() {
 		return coursecode;
 	}

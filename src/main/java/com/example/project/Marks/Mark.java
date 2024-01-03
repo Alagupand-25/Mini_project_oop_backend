@@ -2,6 +2,7 @@ package com.example.project.Marks;
 
 import java.util.Date;
 
+import com.example.project.Student.model.Branch;
 import com.example.project.Student.model.Students;
 import com.example.project.Subject.Subject;
 import com.example.project.facility.model.Faculty;
@@ -110,8 +111,8 @@ public class Mark {
 		return test;
 	}
 
-	public void setTest(Test test) {
-		this.test = test;
+	public void setTest(String test) {
+		this.test = Test.valueOf(test);
 	}
 
 	public Date getDate() {

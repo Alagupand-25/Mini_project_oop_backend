@@ -23,6 +23,7 @@ public class SubjectService {
 			subject.setCoursecode(request.getCoursecode());
 			subject.setDepartment(request.getDepartment());
 			subject.setYear(request.getYear());
+			subject.setSemester(request.getSemester());
 			subject.setFaculty(
 					facultyRepository.getByFacultyid(
 							request.getFacultyid()

@@ -4,17 +4,24 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@RequestMapping("api/mark/")
 public class MarkController {
 	
 	@Autowired
 	private MarkService markservice;
 	
-	@PreAuthorize("hasAuthority('Teacher') or hasAuthority('Admin')")
 	@PostMapping
-	public ResponseEntity<?> addMarks(){
-		return markservice.addMarks();
+	public ResponseEntity<?> addMarks(@RequestBody MarkRequest request){
+		try {
+			return markservice.addMarks(request);
+		}
+		catch(Exception e) {
+			return ResponseEntity.badRequest().body(e.getMessage());
+		}
 	}
 }

@@ -7,10 +7,10 @@ import lombok.RequiredArgsConstructor;
 @Builder
 @AllArgsConstructor
 @RequiredArgsConstructor
-public class FacilityRequest {
+public class FacultyRequest {
 	
 	private int id;
-	private long facilityid;
+	private long facultyid;
 	private String designation;
 	private int year;
 	private String dept;
@@ -19,8 +19,8 @@ public class FacilityRequest {
 	public int getId() {
 		return id;
 	}
-	public long getFacilityid() {
-		return facilityid;
+	public long getFacultyid() {
+		return facultyid;
 	}
 	public String getDesignation() {
 		return designation;

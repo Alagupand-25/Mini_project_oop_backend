@@ -1,7 +1,7 @@
 package com.example.project.Material;
 
 import com.example.project.Subject.Subject;
-import com.example.project.facility.model.Facility;
+import com.example.project.facility.model.Faculty;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -44,7 +44,9 @@ public class Material {
 	private Subject Subject_id ;
 	
 	@OneToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "facility_id",referencedColumnName = "facilityid")
-	private Facility facility ;
+	@JoinColumn(name = "facultyid",referencedColumnName = "facultyid")
+	private Faculty faculty;
+	
+
 }
 

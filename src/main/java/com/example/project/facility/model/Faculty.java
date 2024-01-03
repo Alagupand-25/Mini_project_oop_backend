@@ -23,15 +23,15 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor 
 @AllArgsConstructor
 @Entity
-@Table(name = "Facility_table")
-public class Facility {
+@Table(name ="Faculty_table")
+public class Faculty{
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
 	@Column(nullable = false, unique = true)
-	private long facilityid;
+	private long facultyid;
 	
 	@Column(nullable = false)
 	private String designation;
@@ -50,12 +50,12 @@ public class Facility {
 		return id;
 	}
 
-	public long getFacilityid() {
-		return facilityid;
+	public long getFacultyid() {
+		return facultyid;
 	}
 
-	public void setFacilityid(long facilityid) {
-		this.facilityid = facilityid;
+	public void setFacultyid(long facultyid) {
+		this.facultyid = facultyid;
 	}
 
 	public String getDesignation() {

@@ -23,8 +23,11 @@ public class FileModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 	
-	@Column(nullable = false)
+	@Column(nullable = false,unique = true)
     private String fileName;
+	
+	@Column(nullable = false)
+	private String original_name;
 	
 	@Column(nullable = false)
     private String fileType;
@@ -69,6 +72,16 @@ public class FileModel {
 
 	public Long getId() {
 		return id;
+	}
+
+	public String getOriginal_name() {
+		return original_name;
+	}
+
+	public void setOriginal_name(String original_name) {
+		this.original_name = original_name;
 	} 
+	
+	
 	
 }

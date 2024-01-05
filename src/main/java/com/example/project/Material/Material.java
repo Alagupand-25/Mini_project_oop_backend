@@ -11,6 +11,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -44,11 +45,11 @@ public class Material {
 	@JoinColumn(name = "File_id",referencedColumnName = "id")
 	private FileModel file;
 	
-	@OneToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "Subject_id",referencedColumnName = "id")
-	private Subject Subject ;
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "CourseCode", referencedColumnName = "CourseCode")
+	private Subject Subject;
 	
-	@OneToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "facultyid",referencedColumnName = "facultyid")
 	private Faculty faculty;
 

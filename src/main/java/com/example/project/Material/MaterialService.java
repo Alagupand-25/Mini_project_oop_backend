@@ -42,4 +42,8 @@ public class MaterialService {
 		}
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("invalid request");
 	}
+	
+	public ResponseEntity<?> File_download(String file) throws Exception{
+		return file_service.File_download(file,"Material");
+	}
 }

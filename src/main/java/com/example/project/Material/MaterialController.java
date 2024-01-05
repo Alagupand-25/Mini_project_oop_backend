@@ -2,6 +2,7 @@ package com.example.project.Material;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -25,6 +26,16 @@ public class MaterialController {
 			return materialService.addMaterial(request,file);
 		}
 		catch(Exception e) {
+			return ResponseEntity.badRequest().body(e.getMessage());
+		}
+	}
+	
+	 @PostMapping("/download/{path}")
+	 public ResponseEntity<?> downloadFile(@PathVariable String path) {
+		try {
+			return materialService.File_download(path);
+		}
+		catch (Exception e) {
 			return ResponseEntity.badRequest().body(e.getMessage());
 		}
 	}

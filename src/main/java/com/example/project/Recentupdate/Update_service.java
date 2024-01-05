@@ -1,9 +1,6 @@
 package com.example.project.Recentupdate;
 
-import java.io.File;
-import java.io.FileOutputStream;
 import java.util.Date;
-import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -13,12 +10,16 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.example.project.File.FileModel;
 import com.example.project.File.FileRepository;
+import com.example.project.File.File_service;
 
 @Service
 public class Update_service {
 	
 	@Autowired
 	FileRepository fileRepository;
+	
+	@Autowired
+	File_service file_service;
 	
 	@Autowired
 	Update_Repository update_Repository;
@@ -34,7 +35,7 @@ public class Update_service {
 			update.setTo_facilityonly(request.isToFacilityOnly());
 			update.setTo_display(true);
 			System.out.println(update.getId());
-			if(file != null) file_model = fileUpload(file);
+			if(file != null) file_model = file_service.fileUpload(file,"update");
 			update.setFile(file_model);
 			
 			update_Repository.save(update);
@@ -44,23 +45,5 @@ public class Update_service {
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("invalid request");
 	}
 	
-	public FileModel fileUpload(MultipartFile file)throws Exception {
-		
-		UUID uuid = UUID.randomUUID();
-		String file_name = uuid+"_"+file.getOriginalFilename();
-		String filePath = System.getProperty("user.dir") + "\\src\\resources\\update" + File.separator+file_name; 
-        FileOutputStream fout = new FileOutputStream(filePath);
-        fout.write(file.getBytes());         
-        fout.close();
-        
-        FileModel file_model = new FileModel();
-        file_model.setFileName(file_name);
-        file_model.setFilePath(filePath);
-        file_model.setFileType(file.getContentType());
-        file_model.setSize(file.getSize());
-        
-        fileRepository.save(file_model);
-        
-		return file_model;
-	}
+	
 }

@@ -25,6 +25,7 @@ public class MarkController {
 	}
 	
 	@PostMapping("student")
+	
 	public ResponseEntity<?> getByStudent(@RequestBody StudentMarkRequest request){
 		try {
 			return markservice.getByStudent(request);

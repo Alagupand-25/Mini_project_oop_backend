@@ -68,11 +68,8 @@ public class MarkService {
             Students students = studentRepo.getByRollno(request.getRollno());
             Semester semester = request.getSemester();
             int year = request.getYear();
-            
             List<Mark> marks = markRepository.findByStudentsAndSemesterAndYear(students, semester, year);
-
-            
-                return ResponseEntity.ok(marks);
+            return ResponseEntity.ok(marks);
            
         } else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Student with the provided roll number not found");

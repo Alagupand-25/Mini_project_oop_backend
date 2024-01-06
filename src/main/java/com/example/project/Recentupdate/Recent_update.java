@@ -2,11 +2,16 @@ package com.example.project.Recentupdate;
 
 import java.util.Date;
 
+import com.example.project.File.FileModel;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -36,6 +41,10 @@ public class Recent_update {
 	
 	@Column(nullable = false)
 	private Date expire_at;
+	
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "File_id",referencedColumnName = "id")
+	private FileModel file;
 	
 	@Column(columnDefinition = "boolean default false")
 	private boolean to_facilityonly;
@@ -95,4 +104,14 @@ public class Recent_update {
 		return id;
 	}
 
+	public FileModel getFile() {
+		return file;
+	}
+
+	public void setFile(FileModel file) {
+		this.file = file;
+	}
+
+	
+	
 }

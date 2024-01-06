@@ -2,7 +2,6 @@ package com.example.project.Marks;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,6 +25,7 @@ public class MarkController {
 	}
 	
 	@PostMapping("student")
+	
 	public ResponseEntity<?> getByStudent(@RequestBody StudentMarkRequest request){
 		try {
 			return markservice.getByStudent(request);

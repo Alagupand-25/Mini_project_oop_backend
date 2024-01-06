@@ -10,7 +10,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -45,9 +45,9 @@ public class Subject {
 	@Column(nullable = false)
 	private int Year;
 	
-	@OneToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "facultyid",referencedColumnName = "facultyid")
-	private Faculty faculty ;
+	@ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "facultyid", referencedColumnName = "facultyid")
+    private Faculty faculty;
 
 	public int getId() {
 		return id;
@@ -100,5 +100,5 @@ public class Subject {
 	public void setFaculty(Faculty faculty) {
 		this.faculty = faculty;
 	}
-	
+
 }

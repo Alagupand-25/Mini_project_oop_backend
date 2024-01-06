@@ -1,16 +1,21 @@
 package com.example.project.Recentupdate;
 
+import java.util.Collection;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.example.project.File.FileModel;
 import com.example.project.File.FileRepository;
 import com.example.project.File.File_service;
+import com.example.project.User.Role;
 
 @Service
 public class Update_service {
@@ -44,6 +49,15 @@ public class Update_service {
 		}
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("invalid request");
 	}
+
+	public ResponseEntity<?> File_download(String file_name) throws Exception {
+		return file_service.File_download(file_name,"update");
+	}
 	
-	
+	public void getUpdate(){
+
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		Collection<? extends GrantedAuthority> role = authentication.getAuthorities();
+		System.out.println(role);
+	}
 }

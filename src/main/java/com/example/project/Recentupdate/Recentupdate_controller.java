@@ -4,6 +4,8 @@ package com.example.project.Recentupdate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.example.project.User.Role;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @RestController
@@ -38,6 +41,7 @@ public class Recentupdate_controller {
 	@GetMapping("/download/{path}")
 	 public ResponseEntity<?> downloadFile(@PathVariable String file_name) {
 		try {
+			Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 			return update_service.File_download(file_name);
 		}
 		catch (Exception e) {
@@ -45,4 +49,19 @@ public class Recentupdate_controller {
 		}
 	}
 	
+	@GetMapping
+	public ResponseEntity<?> Getupdate() {
+		try { 
+			Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+			if(authentication.getAuthorities().contains(Role.Students.name())) {
+				return update_service.getUpdate();
+			}
+			else {
+				return update_service.getUpdateFaculty();
+			}
+		}
+		catch (Exception e) {
+			return ResponseEntity.badRequest().body(e.getMessage());
+		}
+	}
 }

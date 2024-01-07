@@ -2,6 +2,8 @@ package com.example.project.Recentupdate;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -9,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.example.project.File.FileDto;
 import com.example.project.File.FileModel;
 import com.example.project.File.FileRepository;
 import com.example.project.File.File_service;
@@ -51,12 +54,28 @@ public class Update_service {
 	}
 	
 	public ResponseEntity<?> getUpdate() throws Exception {
-		ArrayList<Recent_update> list = update_Repository.findByIsdisplayTrueAndIsfacilityonlyFalseAndExpireatAfter(new Date(System.currentTimeMillis()));
+		ArrayList<Recent_update> recentUpdates = update_Repository.findByIsdisplayTrueAndIsfacilityonlyFalseAndExpireatAfter(new Date(System.currentTimeMillis()));
+		 List<RecentupdateDto> list = recentUpdates.stream()
+	                .map(this::convertToDto)
+	                .collect(Collectors.toList());
 		return ResponseEntity.status(HttpStatus.OK).body(list);
 	}
 	
 	public ResponseEntity<?> getUpdateFaculty() throws Exception {
-		ArrayList<Recent_update> list = update_Repository.findByIsdisplayTrueAndExpireatAfter(new Date(System.currentTimeMillis()));
+		ArrayList<Recent_update> recentUpdates = update_Repository.findByIsdisplayTrueAndExpireatAfter(new Date(System.currentTimeMillis()));
+        List<RecentupdateDto> list = recentUpdates.stream()
+                .map(this::convertToDto)
+                .collect(Collectors.toList());
 		return ResponseEntity.status(HttpStatus.OK).body(list);
 	}
+	
+	private RecentupdateDto convertToDto(Recent_update recentUpdate) {
+        RecentupdateDto recentupdateDto = new RecentupdateDto();
+        recentupdateDto.setTitle(recentUpdate.getTitle());
+        recentupdateDto.setContent(recentUpdate.getContent());
+        recentupdateDto.setCreatedate(recentUpdate.getCreatedate());
+        recentupdateDto.setExpireat(recentUpdate.getExpireat());
+        recentupdateDto.setFile(file_service.convertToDto(recentUpdate.getFile()));
+        return recentupdateDto;
+    }
 }

@@ -20,7 +20,7 @@ public class MaterialController {
 	MaterialService materialService;
 	
 	@PostMapping
-	public ResponseEntity<?> addMark(@RequestParam("data") String jsonData,@RequestParam MultipartFile file) {
+	public ResponseEntity<?> addMaterial(@RequestParam("data") String jsonData,@RequestParam MultipartFile file) {
 		try {
 			ObjectMapper objectMapper = new ObjectMapper();
 	        Material_request request = objectMapper.readValue(jsonData, Material_request.class);

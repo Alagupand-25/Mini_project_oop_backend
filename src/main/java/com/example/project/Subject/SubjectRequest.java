@@ -1,6 +1,6 @@
 package com.example.project.Subject;
 
-import com.example.project.Marks.Model.Semester;
+import com.example.project.Student.model.Semester;
 
 public class SubjectRequest {
 

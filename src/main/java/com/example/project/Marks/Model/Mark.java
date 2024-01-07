@@ -3,6 +3,7 @@ package com.example.project.Marks.Model;
 import java.util.Date;
 
 import com.example.project.Student.model.Branch;
+import com.example.project.Student.model.Semester;
 import com.example.project.Student.model.Students;
 import com.example.project.Subject.Subject;
 import com.example.project.facility.model.Faculty;

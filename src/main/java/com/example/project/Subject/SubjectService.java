@@ -5,6 +5,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import com.example.project.DataTransfer.MaterialDto;
+import com.example.project.DataTransfer.SubjectDto;
+import com.example.project.Material.Material;
 import com.example.project.facility.model.FacultyRepository;
 
 @Service
@@ -34,4 +37,14 @@ public class SubjectService {
 		}
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("invalid input");
 	}
+
+	public SubjectDto convertToDto(Subject subject) {
+		SubjectDto subjectdto = new SubjectDto();
+		subjectdto.setCoursecode(subject.getCoursecode());
+		subjectdto.setDepartment(subject.getDepartment());
+		subjectdto.setName(subject.getName());
+		subjectdto.setSemester(subject.getSemester());
+		subjectdto.setYear(subject.getYear());
+        return subjectdto;
+    }
 }

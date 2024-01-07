@@ -14,6 +14,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.example.project.DataTransfer.FileDto;
+
 @Service
 public class File_service {
 	
@@ -72,6 +74,5 @@ public class File_service {
 	    fileDto.setSize(file.getSize());  
 	    return fileDto;
 	}
-
-
+	
 }

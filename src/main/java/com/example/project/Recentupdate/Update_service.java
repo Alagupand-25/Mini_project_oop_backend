@@ -11,7 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.example.project.File.FileDto;
+import com.example.project.DataTransfer.RecentupdateDto;
 import com.example.project.File.FileModel;
 import com.example.project.File.FileRepository;
 import com.example.project.File.File_service;
@@ -55,7 +55,7 @@ public class Update_service {
 	
 	public ResponseEntity<?> getUpdate() throws Exception {
 		ArrayList<Recent_update> recentUpdates = update_Repository.findByIsdisplayTrueAndIsfacilityonlyFalseAndExpireatAfter(new Date(System.currentTimeMillis()));
-		 List<RecentupdateDto> list = recentUpdates.stream()
+		List<RecentupdateDto> list = recentUpdates.stream()
 	                .map(this::convertToDto)
 	                .collect(Collectors.toList());
 		return ResponseEntity.status(HttpStatus.OK).body(list);
@@ -69,7 +69,7 @@ public class Update_service {
 		return ResponseEntity.status(HttpStatus.OK).body(list);
 	}
 	
-	private RecentupdateDto convertToDto(Recent_update recentUpdate) {
+	public RecentupdateDto convertToDto(Recent_update recentUpdate) {
         RecentupdateDto recentupdateDto = new RecentupdateDto();
         recentupdateDto.setTitle(recentUpdate.getTitle());
         recentupdateDto.setContent(recentUpdate.getContent());

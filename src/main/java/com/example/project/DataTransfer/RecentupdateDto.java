@@ -1,8 +1,6 @@
-package com.example.project.Recentupdate;
+package com.example.project.DataTransfer;
 
 import java.util.Date;
-
-import com.example.project.File.FileDto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

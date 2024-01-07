@@ -40,4 +40,14 @@ public class MaterialController {
 			return ResponseEntity.badRequest().body(e.getMessage());
 		}
 	}
+	 
+	 @GetMapping("{course_code}")
+	 public ResponseEntity<?> getallMaterial(@PathVariable String course_code) {
+		try {
+			return materialService.getallMaterial(course_code);
+		}
+		catch (Exception e) {
+			return ResponseEntity.badRequest().body(e.getMessage());
+		}
+	}
 }

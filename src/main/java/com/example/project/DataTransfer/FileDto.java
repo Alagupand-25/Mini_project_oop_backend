@@ -1,4 +1,4 @@
-package com.example.project.File;
+package com.example.project.DataTransfer;
 
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;

@@ -47,7 +47,7 @@ public class Material {
 	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "CourseCode", referencedColumnName = "CourseCode")
-	private Subject Subject;
+	private Subject subject;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "facultyid",referencedColumnName = "facultyid")
@@ -74,7 +74,7 @@ public class Material {
 	}
 
 	public Subject getSubject() {
-		return Subject;
+		return subject;
 	}
 
 	public Faculty getFaculty() {
@@ -98,7 +98,7 @@ public class Material {
 	}
 
 	public void setSubject(Subject subject) {
-		Subject = subject;
+		subject = subject;
 	}
 
 	public void setFaculty(Faculty faculty) {

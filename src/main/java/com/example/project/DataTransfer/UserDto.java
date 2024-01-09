@@ -1,10 +1,13 @@
 package com.example.project.DataTransfer;
 
+import com.example.project.User.Role;
+
 public class UserDto {
 	
 	private String first_name;
 	private String last_name;
 	private String email;
+	private Role role;
 	
 	public String getFirst_name() {
 		return first_name;
@@ -23,6 +26,12 @@ public class UserDto {
 	}
 	public void setEmail(String email) {
 		this.email = email;
+	}
+	public Role getRole() {
+		return role;
+	}
+	public void setRole(Role role) {
+		this.role = role;
 	}
 	
 	

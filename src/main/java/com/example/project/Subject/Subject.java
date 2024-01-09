@@ -1,4 +1,4 @@
-package com.example.project.Subject;
+ package com.example.project.Subject;
 
 import com.example.project.Student.model.Semester;
 import com.example.project.facility.model.Faculty;
@@ -43,7 +43,7 @@ public class Subject {
 	private Semester semester;
 	
 	@Column(nullable = false)
-	private int Year;
+	private int year;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "facultyid", referencedColumnName = "facultyid")
@@ -70,11 +70,11 @@ public class Subject {
 	}
 
 	public int getYear() {
-		return Year;
+		return year;
 	}
 
 	public void setYear(int year) {
-		Year = year;
+		this. year = year;
 	}
 	
 	public Semester getSemester() {

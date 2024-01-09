@@ -9,6 +9,8 @@ public class SubjectDto{
 	private String department;
 	private Semester semester;
 	private int Year;
+	private FacultyDto faculty;
+	
 	public String getName() {
 		return name;
 	}
@@ -38,6 +40,12 @@ public class SubjectDto{
 	}
 	public void setYear(int year) {
 		Year = year;
+	}
+	public FacultyDto getFaculty() {
+		return faculty;
+	}
+	public void setFaculty(FacultyDto faculty) {
+		this.faculty = faculty;
 	}
 	
 }

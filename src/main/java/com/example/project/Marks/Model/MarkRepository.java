@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import com.example.project.Student.model.Semester;
 import com.example.project.Student.model.Students;
 import com.example.project.Subject.Subject;
 

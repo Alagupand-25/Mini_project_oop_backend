@@ -14,6 +14,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.example.project.DataTransfer.FileDto;
+
 @Service
 public class File_service {
 	
@@ -63,5 +65,14 @@ public class File_service {
 
 	    return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("File not found");
 	}
-
+	
+	public FileDto convertToDto(FileModel file) {
+	    FileDto fileDto = new FileDto();
+	    fileDto.setFileName(file.getFileName());
+	    fileDto.setOriginal_name(file.getOriginal_name());
+	    fileDto.setFileType(file.getFileType());
+	    fileDto.setSize(file.getSize());  
+	    return fileDto;
+	}
+	
 }

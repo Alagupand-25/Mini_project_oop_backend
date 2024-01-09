@@ -20,7 +20,7 @@ public class MaterialController {
 	MaterialService materialService;
 	
 	@PostMapping
-	public ResponseEntity<?> addMark(@RequestParam("data") String jsonData,@RequestParam MultipartFile file) {
+	public ResponseEntity<?> addMaterial(@RequestParam("data") String jsonData,@RequestParam MultipartFile file) {
 		try {
 			ObjectMapper objectMapper = new ObjectMapper();
 	        Material_request request = objectMapper.readValue(jsonData, Material_request.class);
@@ -35,6 +35,16 @@ public class MaterialController {
 	 public ResponseEntity<?> downloadFile(@PathVariable String path) {
 		try {
 			return materialService.File_download(path);
+		}
+		catch (Exception e) {
+			return ResponseEntity.badRequest().body(e.getMessage());
+		}
+	}
+	 
+	 @GetMapping("{course_code}")
+	 public ResponseEntity<?> getallMaterial(@PathVariable String course_code) {
+		try {
+			return materialService.getallMaterial(course_code);
 		}
 		catch (Exception e) {
 			return ResponseEntity.badRequest().body(e.getMessage());

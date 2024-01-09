@@ -9,8 +9,8 @@ import org.springframework.stereotype.Service;
 
 import com.example.project.Marks.Model.Mark;
 import com.example.project.Marks.Model.MarkRepository;
-import com.example.project.Marks.Model.Semester;
 import com.example.project.Marks.Model.Test;
+import com.example.project.Student.model.Semester;
 import com.example.project.Student.model.StudentRepo;
 import com.example.project.Student.model.Students;
 import com.example.project.Subject.Subject;

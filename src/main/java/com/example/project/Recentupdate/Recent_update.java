@@ -23,7 +23,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor 
 @AllArgsConstructor
 @Entity
-@Table(name = "Recent_update_table")
+@Table(name = "Recent_update")
 public class Recent_update {
 	
 	@Id
@@ -37,20 +37,20 @@ public class Recent_update {
 	private String content;
 	
 	@Column(nullable = false)
-	private Date created_at;
+	private Date createdate;
 	
 	@Column(nullable = false)
-	private Date expire_at;
+	private Date expireat;
 	
 	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "File_id",referencedColumnName = "id")
 	private FileModel file;
 	
 	@Column(columnDefinition = "boolean default false")
-	private boolean to_facilityonly;
+	private boolean isfacilityonly;
 	
 	@Column(columnDefinition = "boolean default true")
-	private Boolean to_display;
+	private Boolean isdisplay;
 
 	public String getTitle() {
 		return title;
@@ -68,36 +68,37 @@ public class Recent_update {
 		this.content = content;
 	}
 
-	public Date getCreated_at() {
-		return created_at;
+	
+	public Date getCreatedate() {
+		return createdate;
 	}
 
-	public void setCreated_at(Date created_at) {
-		this.created_at = created_at;
+	public void setCreatedate(Date createdate) {
+		this.createdate = createdate;
 	}
 
-	public Date getExpire_at() {
-		return expire_at;
+	public Date getExpireat() {
+		return expireat;
 	}
 
-	public void setExpire_at(Date expire_at) {
-		this.expire_at = expire_at;
+	public void setExpireat(Date expireat) {
+		this.expireat = expireat;
 	}
 
-	public boolean isTo_facilityonly() {
-		return to_facilityonly;
+	public boolean isIsfacilityonly() {
+		return isfacilityonly;
 	}
 
-	public void setTo_facilityonly(boolean to_facilityonly) {
-		this.to_facilityonly = to_facilityonly;
+	public void setIsfacilityonly(boolean isfacilityonly) {
+		this.isfacilityonly = isfacilityonly;
 	}
 
-	public Boolean getTo_display() {
-		return to_display;
+	public Boolean getIsdisplay() {
+		return isdisplay;
 	}
 
-	public void setTo_display(Boolean to_display) {
-		this.to_display = to_display;
+	public void setIsdisplay(Boolean isdisplay) {
+		this.isdisplay = isdisplay;
 	}
 
 	public int getId() {

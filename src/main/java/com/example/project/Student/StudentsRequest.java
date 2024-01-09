@@ -1,5 +1,7 @@
 package com.example.project.Student;
 
+import com.example.project.Student.model.Semester;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.RequiredArgsConstructor;
@@ -13,7 +15,7 @@ public class StudentsRequest {
 	private String branch;
 	private String dept;
 	private int year;
-	private int semester;
+	private Semester semester;
 	private String email;
 	
 	public long getrollno() {
@@ -28,7 +30,7 @@ public class StudentsRequest {
 	public int getYear() {
 		return year;
 	}
-	public int getSemester() {
+	public Semester getSemester() {
 		return semester;
 	}
 	public String getEmail() {

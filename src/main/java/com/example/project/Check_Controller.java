@@ -15,12 +15,9 @@ import jakarta.servlet.http.HttpServletRequest;
 @RequestMapping("api/check")
 public class Check_Controller {
 	
-	@Autowired
-	Update_service service;
 	@PreAuthorize("hasAuthority('Admin')")
 	@GetMapping
 	public String getmethod(HttpServletRequest request) {
-		service.getUpdate();
 		return "hi you ";
 	}
 	

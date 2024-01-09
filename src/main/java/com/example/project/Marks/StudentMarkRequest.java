@@ -1,6 +1,6 @@
 package com.example.project.Marks;
 
-import com.example.project.Marks.Model.Semester;
+import com.example.project.Student.model.Semester;
 
 public class StudentMarkRequest {
 	long rollno;

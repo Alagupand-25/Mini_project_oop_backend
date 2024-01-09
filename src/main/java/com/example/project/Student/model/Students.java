@@ -43,7 +43,7 @@ public class Students {
 	private int year;
 	
 	@Column(nullable = false)
-	private int semester;
+	private Semester semester;
 	
 	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "user_email",referencedColumnName = "email")
@@ -84,12 +84,12 @@ public class Students {
 	public void setYear(int year) {
 		this.year = year;
 	}
-
-	public int getSemester() {
+	
+	public Semester getSemester() {
 		return semester;
 	}
 
-	public void setSemester(int semester) {
+	public void setSemester(Semester semester) {
 		this.semester = semester;
 	}
 

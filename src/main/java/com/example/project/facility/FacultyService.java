@@ -7,9 +7,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import com.example.project.DataTransfer.FacultyDto;
 import com.example.project.User.Role;
 import com.example.project.User.User;
 import com.example.project.User.UserRepository;
+import com.example.project.User.UserService;
 import com.example.project.facility.model.Faculty;
 import com.example.project.facility.model.FacultyRepository;
 
@@ -20,6 +22,8 @@ public class FacultyService {
 	FacultyRepository facultyRepo;
 	@Autowired
 	UserRepository userRepo; 
+	@Autowired
+	UserService userService;
 	
 	public List<Faculty> getallFacility() throws Exception{
 		return facultyRepo.findAll();
@@ -62,6 +66,16 @@ public class FacultyService {
 			return ResponseEntity.status(HttpStatus.CREATED).body("Faculty deleted successfully");
 		}
 		return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Faculty does not already exits");
+	}
+	
+	public FacultyDto convertToDto(Faculty faculty) {
+		FacultyDto dto = new FacultyDto();
+		dto.setDept(faculty.getDept());
+		dto.setDesignation(faculty.getDesignation());
+		dto.setFacultyid(faculty.getFacultyid());
+		dto.setYear(faculty.getYear());
+		dto.setUser(userService.convertToDto(faculty.getUser()));
+		return dto;
 	}
 
 }

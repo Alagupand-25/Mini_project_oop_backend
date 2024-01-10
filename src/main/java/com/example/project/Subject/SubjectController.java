@@ -29,7 +29,6 @@ public class SubjectController {
 		
 	}
 	
-	
 	@GetMapping
 	public ResponseEntity<?> getallsubject(@RequestBody SubjectBasicDao basicDao){
 		try {

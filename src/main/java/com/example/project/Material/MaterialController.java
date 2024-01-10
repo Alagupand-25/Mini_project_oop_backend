@@ -9,7 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
- 
+
+import com.example.project.DataAccess.Material_request;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @RestController
@@ -31,7 +32,7 @@ public class MaterialController {
 		}
 	}
 	
-	 @GetMapping("/download/{path}")
+	 @GetMapping("download/{path}")
 	 public ResponseEntity<?> downloadFile(@PathVariable String path) {
 		try {
 			return materialService.File_download(path);

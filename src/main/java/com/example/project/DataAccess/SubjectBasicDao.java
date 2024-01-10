@@ -1,4 +1,4 @@
-package com.example.project.Subject;
+package com.example.project.DataAccess;
 
 import com.example.project.Student.model.Semester;
 

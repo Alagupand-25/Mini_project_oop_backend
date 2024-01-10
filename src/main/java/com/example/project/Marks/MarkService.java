@@ -7,6 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import com.example.project.DataAccess.MarkRequest;
+import com.example.project.DataAccess.StudentMarkRequest;
 import com.example.project.Marks.Model.Mark;
 import com.example.project.Marks.Model.MarkRepository;
 import com.example.project.Marks.Model.Test;

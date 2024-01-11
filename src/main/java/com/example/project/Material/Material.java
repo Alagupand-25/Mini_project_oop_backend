@@ -2,7 +2,7 @@ package com.example.project.Material;
 
 import com.example.project.File.FileModel;
 import com.example.project.Subject.Subject;
-import com.example.project.facility.model.Faculty;
+import com.example.project.facility.Faculty;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

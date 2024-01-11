@@ -13,8 +13,6 @@ import com.example.project.User.Role;
 import com.example.project.User.User;
 import com.example.project.User.UserRepository;
 import com.example.project.User.UserService;
-import com.example.project.facility.model.Faculty;
-import com.example.project.facility.model.FacultyRepository;
 
 @Service
 public class FacultyService {

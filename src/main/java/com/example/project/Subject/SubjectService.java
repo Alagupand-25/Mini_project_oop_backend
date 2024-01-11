@@ -9,9 +9,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.example.project.DataAccess.SubjectBasicDao;
+import com.example.project.DataAccess.SubjectRequest;
 import com.example.project.DataTransfer.SubjectDto;
+import com.example.project.facility.FacultyRepository;
 import com.example.project.facility.FacultyService;
-import com.example.project.facility.model.FacultyRepository;
 
 @Service
 public class SubjectService {
@@ -42,6 +43,27 @@ public class SubjectService {
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("invalid input");
 	}
 	
+	public ResponseEntity<?> updateSubject(long subject_id,SubjectRequest body) throws Exception{
+		if(subjectRepository.existsById(subject_id)) {
+			Subject subject = subjectRepository.getById(subject_id);
+			if(subject != null) {
+				subject.setCoursecode(body.getCoursecode());
+				subject.setDepartment(body.getDepartment());
+				subject.setFaculty(
+						facultyRepository.getByFacultyid(
+								body.getFacultyid()
+							)
+						);
+				subject.setName(body.getName());
+				subject.setSemester(body.getSemester());
+				subject.setYear(body.getYear());
+				subjectRepository.save(subject);
+				return ResponseEntity.status(HttpStatus.OK).body(convertToDto(subject));
+			}
+		}
+		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("invalid input");
+	}
+	
 	public ResponseEntity<?> getallSubject(SubjectBasicDao subjectDao) throws Exception{
 		List<Subject> subjectlist = subjectRepository.findByDepartmentAndSemesterAndYear(
 					subjectDao.getDepartment(),
@@ -56,6 +78,7 @@ public class SubjectService {
 
 	public SubjectDto convertToDto(Subject subject) {
 		SubjectDto subjectdto = new SubjectDto();
+		subjectdto.setId(subject.getId());
 		subjectdto.setCoursecode(subject.getCoursecode());
 		subjectdto.setDepartment(subject.getDepartment());
 		subjectdto.setName(subject.getName());

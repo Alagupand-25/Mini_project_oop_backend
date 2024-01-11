@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.project.DataAccess.SubjectBasicDao;
+import com.example.project.DataAccess.SubjectRequest;
 
 @RestController
 @RequestMapping("api/subject/")
@@ -33,7 +34,7 @@ public class SubjectController {
 	}
 	
 	@PreAuthorize("!hasAuthority('Students')")
-	@GetMapping("Faculty/{facultyId}")
+	@GetMapping("faculty/{facultyId}")
 	public ResponseEntity<?> getallsubjectFaculty(@PathVariable long facultyId){
 		try {
 			System.err.println(facultyId);
@@ -49,6 +50,17 @@ public class SubjectController {
 	public ResponseEntity<?> getallsubject(@RequestBody SubjectBasicDao basicDao){
 		try {
 			return service.getallSubject(basicDao);
+		}
+		catch (Exception e) {
+			return ResponseEntity.badRequest().body(e.getMessage());
+		}
+	}
+	
+	@PreAuthorize("hasAuthority('Admin')")
+	@PostMapping("update/{subject_id}")
+	public ResponseEntity<?> updateSubject(@RequestBody SubjectRequest body,@PathVariable long subject_id){
+		try {
+			return service.updateSubject(subject_id, body);
 		}
 		catch (Exception e) {
 			return ResponseEntity.badRequest().body(e.getMessage());

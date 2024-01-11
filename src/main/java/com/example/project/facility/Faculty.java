@@ -1,4 +1,4 @@
-package com.example.project.facility.model;
+package com.example.project.facility;
 
 
 import com.example.project.User.User;

@@ -1,7 +1,7 @@
  package com.example.project.Subject;
 
-import com.example.project.Student.model.Semester;
-import com.example.project.facility.model.Faculty;
+import com.example.project.Student.Semester;
+import com.example.project.facility.Faculty;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -28,7 +28,7 @@ public class Subject {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private long id;
 	
 	@Column(nullable = false)
 	private String name;
@@ -49,7 +49,7 @@ public class Subject {
     @JoinColumn(name = "facultyid", referencedColumnName = "facultyid")
     private Faculty faculty;
 
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 

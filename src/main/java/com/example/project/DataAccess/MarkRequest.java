@@ -2,7 +2,7 @@ package com.example.project.DataAccess;
 
 import java.util.Date;
 
-import com.example.project.Marks.Model.Result;
+import com.example.project.Marks.Result;
 
 
 public class MarkRequest {

@@ -1,6 +1,6 @@
 package com.example.project.DataAccess;
 
-import com.example.project.Student.model.Semester;
+import com.example.project.Student.Semester;
 
 public class SubjectBasicDao {
 	

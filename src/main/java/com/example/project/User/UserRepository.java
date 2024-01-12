@@ -2,7 +2,7 @@ package com.example.project.User;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.example.project.Student.model.Students;
+import com.example.project.Student.Students;
 
 import java.util.Optional;
 import java.util.List;

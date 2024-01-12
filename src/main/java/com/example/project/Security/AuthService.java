@@ -8,6 +8,8 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.example.project.DataAccess.AuthRequestbody;
+import com.example.project.DataTransfer.AuthReponsebody;
 import com.example.project.Security.Config.JwtService;
 import com.example.project.User.Role;
 import com.example.project.User.User;

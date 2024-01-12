@@ -1,9 +1,10 @@
 package com.example.project.DataTransfer;
 
-import com.example.project.Student.model.Semester;
+import com.example.project.Student.Semester;
 
 public class SubjectDto{
 	
+	private long id;
 	private String name;
 	private String coursecode;
 	private String department;
@@ -11,6 +12,12 @@ public class SubjectDto{
 	private int Year;
 	private FacultyDto faculty;
 	
+	public long getId() {
+		return id;
+	}
+	public void setId(long id) {
+		this.id = id;
+	}
 	public String getName() {
 		return name;
 	}

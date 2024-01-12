@@ -1,4 +1,4 @@
-package com.example.project.facility;
+package com.example.project.DataAccess;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

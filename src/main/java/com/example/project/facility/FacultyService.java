@@ -7,13 +7,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import com.example.project.DataAccess.FacultyRequest;
 import com.example.project.DataTransfer.FacultyDto;
 import com.example.project.User.Role;
 import com.example.project.User.User;
 import com.example.project.User.UserRepository;
 import com.example.project.User.UserService;
-import com.example.project.facility.model.Faculty;
-import com.example.project.facility.model.FacultyRepository;
 
 @Service
 public class FacultyService {

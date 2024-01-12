@@ -1,12 +1,12 @@
-package com.example.project.Marks.Model;
+package com.example.project.Marks;
 
 import java.util.Date;
 
-import com.example.project.Student.model.Branch;
-import com.example.project.Student.model.Semester;
-import com.example.project.Student.model.Students;
+import com.example.project.Student.Branch;
+import com.example.project.Student.Semester;
+import com.example.project.Student.Students;
 import com.example.project.Subject.Subject;
-import com.example.project.facility.model.Faculty;
+import com.example.project.facility.Faculty;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
